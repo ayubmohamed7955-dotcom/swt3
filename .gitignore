@@ -3,8 +3,8 @@
 ##
 ## Get latest from `dotnet new gitignore`
 
-#drawio
-.drawio.bkp
+# drawio
+*.drawio.bkp
 
 # dotenv files
 .env
