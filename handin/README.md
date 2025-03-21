@@ -102,9 +102,9 @@ Looking at the group's Gitlab (Analyze):
 
 ## 3 The Microwave Oven system
 
-The design and explanation of the Microwave Oven System can be seen in the handouts for Lecture 09.1 and on the [documentation page](MicrowaveOven.md). 
+The design and explanation of the Microwave Oven System can be seen in the handouts for Lecture 09.1 and in the [MicrowaveOven Design Description](MicrowaveOven.md). 
 
-The code for the system is available in this repo. One person from each group should fork the project to your own group and clone it to your local computers. Make sure you can build and run the tests before proceeding. 
+The code for the system is available in this repo. One person from each group should fork the project to your own group (when forking, use group as project namespace, and set visability to internal). All members must clone it to their local computers, build and run the tests before proceeding.
 
 **It is very important that you have your common and all local repos (on your work PCs) set up correctly before you start adding the features for this exercise. Make some simple changes from each of the team’s working PC on the default branch (main or master), push, and check that tests and coverage are run for each of you.**  
 
