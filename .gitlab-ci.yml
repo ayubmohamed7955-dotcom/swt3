@@ -41,8 +41,8 @@ integration-testing:
   when: manual
   script:
   # Build and run tests
-  - 'dotnet clean'
-  - 'dotnet build'
+  #- 'dotnet clean'
+  #- 'dotnet build'
   - 'dotnet test Microwave.Classes.Test.Integration --logger:"junit;MethodFormat=Class;FailureBodyFormat=Verbose"'
   artifacts:
     when: always
