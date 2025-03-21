@@ -6,6 +6,9 @@
 # drawio
 *.drawio.bkp
 
+# Macos
+.DS_Store
+
 # dotenv files
 .env
 
