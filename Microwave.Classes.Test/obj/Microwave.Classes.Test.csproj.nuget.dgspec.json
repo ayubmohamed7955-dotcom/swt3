@@ -1,0 +1,152 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/au276283/courses/swt/swt-student/hand-ins/handin-three/src/MicrowaveOven/Microwave.Classes.Test/Microwave.Classes.Test.csproj": {}
+  },
+  "projects": {
+    "/Users/au276283/courses/swt/swt-student/hand-ins/handin-three/src/MicrowaveOven/Microwave.Classes.Test/Microwave.Classes.Test.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/au276283/courses/swt/swt-student/hand-ins/handin-three/src/MicrowaveOven/Microwave.Classes.Test/Microwave.Classes.Test.csproj",
+        "projectName": "Microwave.Classes.Test",
+        "projectPath": "/Users/au276283/courses/swt/swt-student/hand-ins/handin-three/src/MicrowaveOven/Microwave.Classes.Test/Microwave.Classes.Test.csproj",
+        "packagesPath": "/Users/au276283/.nuget/packages/",
+        "outputPath": "/Users/au276283/courses/swt/swt-student/hand-ins/handin-three/src/MicrowaveOven/Microwave.Classes.Test/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/au276283/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/au276283/courses/swt/swt-student/hand-ins/handin-three/src/MicrowaveOven/Microwave.Classes/Microwave.Classes.csproj": {
+                "projectPath": "/Users/au276283/courses/swt/swt-student/hand-ins/handin-three/src/MicrowaveOven/Microwave.Classes/Microwave.Classes.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "JunitXml.TestLogger": {
+              "target": "Package",
+              "version": "[3.1.12, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.6.0, )"
+            },
+            "NSubstitute": {
+              "target": "Package",
+              "version": "[5.1.0, )"
+            },
+            "NUnit": {
+              "target": "Package",
+              "version": "[3.13.3, )"
+            },
+            "NUnit.Analyzers": {
+              "target": "Package",
+              "version": "[3.6.1, )"
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[4.2.1, )"
+            },
+            "ReportGenerator": {
+              "target": "Package",
+              "version": "[5.2.4, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/au276283/courses/swt/swt-student/hand-ins/handin-three/src/MicrowaveOven/Microwave.Classes/Microwave.Classes.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/au276283/courses/swt/swt-student/hand-ins/handin-three/src/MicrowaveOven/Microwave.Classes/Microwave.Classes.csproj",
+        "projectName": "Microwave.Classes",
+        "projectPath": "/Users/au276283/courses/swt/swt-student/hand-ins/handin-three/src/MicrowaveOven/Microwave.Classes/Microwave.Classes.csproj",
+        "packagesPath": "/Users/au276283/.nuget/packages/",
+        "outputPath": "/Users/au276283/courses/swt/swt-student/hand-ins/handin-three/src/MicrowaveOven/Microwave.Classes/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/au276283/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
