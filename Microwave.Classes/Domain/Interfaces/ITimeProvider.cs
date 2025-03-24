@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Microwave.Classes.Boundary.Interfaces;
+namespace Microwave.Classes.Domain.Interfaces;
 
 public interface ITimeProvider
 {

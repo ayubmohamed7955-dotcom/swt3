@@ -1,5 +1,6 @@
 ﻿using Microwave.Classes.Boundary;
 using Microwave.Classes.Controllers;
+using Microwave.Classes.Domain;
 
 var startCancelButton = new Button();
 var powerButton = new Button();

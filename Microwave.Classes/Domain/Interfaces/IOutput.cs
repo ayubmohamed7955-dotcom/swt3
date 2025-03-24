@@ -1,4 +1,4 @@
-﻿namespace Microwave.Classes.Boundary.Interfaces;
+﻿namespace Microwave.Classes.Domain.Interfaces;
 
 public interface IOutput
 {

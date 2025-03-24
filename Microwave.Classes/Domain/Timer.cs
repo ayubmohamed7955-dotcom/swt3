@@ -1,7 +1,7 @@
 ﻿using System;
-using Microwave.Classes.Boundary.Interfaces;
+using Microwave.Classes.Domain.Interfaces;
 
-namespace Microwave.Classes.Boundary;
+namespace Microwave.Classes.Domain;
 
 public class Timer : ITimeProvider
 {

@@ -1,6 +1,7 @@
 ﻿using System;
 using Microwave.Classes.Boundary.Interfaces;
 using Microwave.Classes.Controllers.Interfaces;
+using Microwave.Classes.Domain.Interfaces;
 
 namespace Microwave.Classes.Controllers;
 

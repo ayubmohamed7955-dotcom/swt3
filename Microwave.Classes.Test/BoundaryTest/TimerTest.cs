@@ -1,4 +1,4 @@
-﻿using Timer = Microwave.Classes.Boundary.Timer;
+﻿using Timer = Microwave.Classes.Domain.Timer;
 
 namespace Microwave.Classes.Test.BoundaryTest;
 
