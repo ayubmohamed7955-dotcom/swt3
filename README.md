@@ -122,7 +122,7 @@ Looking at the group's Gitlab (Analyze):
 
 ## 3 The Microwave Oven system
 
-The design and explanation of the Microwave Oven System can be seen in the exercise for lesson 9 as well as [documentation page](docs/README.md).
+The design and explanation of the Microwave Oven System can be seen in the exercise for lesson 9 as well as [documentation page](Microwave.Docs/README.md).
 
 **It is very important that you have your common and all local repos (on your work PCs) set up correctly before you start adding the features for this exercise. Make some simple changes from each of the team’s working PC on the default branch (main or master), push, and check that tests and coverage are run for each of you.**  
 
