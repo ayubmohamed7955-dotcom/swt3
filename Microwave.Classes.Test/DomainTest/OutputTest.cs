@@ -1,7 +1,6 @@
-﻿using Microwave.Classes.Boundary;
-using Microwave.Classes.Domain;
+﻿using Microwave.Classes.Domain;
 
-namespace Microwave.Classes.Test.BoundaryTest;
+namespace Microwave.Classes.Test.DomainTest;
 
 [TestFixture]
 class OutputTest

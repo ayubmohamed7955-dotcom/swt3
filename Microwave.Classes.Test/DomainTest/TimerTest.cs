@@ -1,6 +1,6 @@
 ﻿using Timer = Microwave.Classes.Domain.Timer;
 
-namespace Microwave.Classes.Test.BoundaryTest;
+namespace Microwave.Classes.Test.DomainTest;
 
 [TestFixture]
 public class TimerTest
