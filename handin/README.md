@@ -102,7 +102,7 @@ Looking at the group's Gitlab (Analyze):
 
 ## 3 The Microwave Oven system
 
-The design and explanation of the Microwave Oven System can be seen in the handouts for Lecture 09.1 and in the [MicrowaveOven Design Description](MicrowaveOven.md). 
+The design and explanation of the Microwave Oven System can be seen in the handouts for Lecture 09.1 and in the [MicrowaveOven Design Description](../Microwave.Docs/README.md). 
 
 The code for the system is available in this repo. One person from each group should fork the project to your own group (when forking, use group as project namespace, and set visability to internal). All members must clone it to their local computers, build and run the tests before proceeding.
 
