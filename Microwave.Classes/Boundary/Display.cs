@@ -1,29 +1,21 @@
-﻿using Microwave.Classes.Interfaces;
+﻿using Microwave.Classes.Boundary.Interfaces;
 
-namespace Microwave.Classes.Boundary
+namespace Microwave.Classes.Boundary;
+
+public class Display(IOutput output) : IDisplay
 {
-    public class Display : IDisplay
+    public void ShowTime(int min, int sec)
     {
-        private IOutput myOutput;
+        output.OutputLine($"Display shows: {min:D2}:{sec:D2}");
+    }
 
-        public Display(IOutput output)
-        {
-            myOutput = output;
-        }
+    public void ShowPower(int power)
+    {
+        output.OutputLine($"Display shows: {power} W");
+    }
 
-        public void ShowTime(int min, int sec)
-        {
-            myOutput.OutputLine($"Display shows: {min:D2}:{sec:D2}");
-        }
-
-        public void ShowPower(int power)
-        {
-            myOutput.OutputLine($"Display shows: {power} W");
-        }
-
-        public void Clear()
-        {
-            myOutput.OutputLine($"Display cleared");
-        }
+    public void Clear()
+    {
+        output.OutputLine($"Display cleared");
     }
 }

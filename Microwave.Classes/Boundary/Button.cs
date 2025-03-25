@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microwave.Classes.Interfaces;
+using Microwave.Classes.Boundary.Interfaces;
 
-namespace Microwave.Classes.Boundary
+namespace Microwave.Classes.Boundary;
+
+public class Button : IButton
 {
-    public class Button : IButton
-    {
-        public event EventHandler Pressed;
+    public event EventHandler Pressed;
 
-        public void Press()
-        {
-            Pressed?.Invoke(this, EventArgs.Empty);
-        }
+    public void Press()
+    {
+        Pressed?.Invoke(this, EventArgs.Empty);
     }
 }
+
