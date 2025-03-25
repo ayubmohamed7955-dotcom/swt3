@@ -2,6 +2,6 @@
 
 This repository contains the code and exercise description for hand-in 3 for the course Software Test and Aarhus University, Institute of Electrical and Computer Engineering.
 
-In the handin folder you will find:
-* [Exercise description](handin/README.md) - Description of the hand-in
-* [MicrowaveOven design](handin/MicrowaveOven.md) - Description of the MicrowaveOven design
+The following documentation is provided:
+* [Hand-in Description](handin/README.md)
+* [MicrowaveOven Design Description](Microwave.Docs/README.md)

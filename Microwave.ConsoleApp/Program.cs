@@ -1,50 +1,41 @@
-﻿using System;
-using Microwave.Classes.Boundary;
+﻿﻿using Microwave.Classes.Boundary;
 using Microwave.Classes.Controllers;
+using Microwave.Classes.Domain;
 
-namespace Microwave.App
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Button startCancelButton = new Button();
-            Button powerButton = new Button();
-            Button timeButton = new Button();
+var startCancelButton = new Button();
+var powerButton = new Button();
+var timeButton = new Button();
 
-            Door door = new Door();
+var door = new Door();
 
-            Output output = new Output();
+var output = new Output();
 
-            Display display = new Display(output);
+var display = new Display(output);
 
-            PowerTube powerTube = new PowerTube(output);
+var powerTube = new PowerTube(output);
 
-            Light light = new Light(output);
+var light = new Light(output);
 
-            Microwave.Classes.Boundary.Timer timer = new Timer();
+var timer = new Timer();
 
-            CookController cooker = new CookController(timer, display, powerTube);
+var cooker = new CookController(timer, display, powerTube);
 
-            UserInterface ui = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, cooker);
+var ui = new MicrowaveController(powerButton, timeButton, startCancelButton, door, display, light, cooker);
 
-            // Finish the double association
-            cooker.UI = ui;
+// Finish the double association
+cooker.Microwave = ui;
 
-            // Simulate a simple sequence
+// Simulate a simple sequence
 
-            powerButton.Press();
+powerButton.Press();
 
-            timeButton.Press();
+timeButton.Press();
 
-            startCancelButton.Press();
+startCancelButton.Press();
 
-            // The simple sequence should now run
+// The simple sequence should now run
 
-            System.Console.WriteLine("When you press enter, the program will stop");
-            // Wait for input
+System.Console.WriteLine("When you press enter, the program will stop");
+// Wait for input
 
-            System.Console.ReadLine();
-        }
-    }
-}
+System.Console.ReadLine();

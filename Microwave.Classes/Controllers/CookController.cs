@@ -1,73 +1,69 @@
 ﻿using System;
-using Microwave.Classes.Interfaces;
+using Microwave.Classes.Boundary.Interfaces;
+using Microwave.Classes.Controllers.Interfaces;
 
-namespace Microwave.Classes.Controllers
+namespace Microwave.Classes.Controllers;
+
+public class CookController : ICookController
 {
-    public class CookController : ICookController
+    // Since there is a 2-way association, this cannot be set until the UI object has been created
+    // It also demonstrates property dependency injection
+    public IMicrowaveController Microwave { set; private get; }
+
+    private bool isCooking;
+
+    private readonly IDisplay myDisplay;
+    private readonly IPowerTube myPowerTube;
+    private readonly ITimeProvider myTimer;
+
+    public CookController(
+        ITimeProvider timer,
+        IDisplay display,
+        IPowerTube powerTube,
+        IMicrowaveController microwave) : this(timer, display, powerTube)
     {
-        // Since there is a 2-way association, this cannot be set until the UI object has been created
-        // It also demonstrates property dependency injection
-        public IUserInterface UI { set; private get; }
+        Microwave = microwave;
+    }
 
-        private bool isCooking = false;
+    public CookController(
+        ITimeProvider timer,
+        IDisplay display,
+        IPowerTube powerTube)
+    {
+        myTimer = timer;
+        myDisplay = display;
+        myPowerTube = powerTube;
 
-        private IDisplay myDisplay;
-        private IPowerTube myPowerTube;
-        private ITimeProvider myTimer;
+        timer.Expired += OnTimerExpired;
+        timer.TimerTick += OnTimerTick;
+    }
 
-        public CookController(
-            ITimeProvider timer,
-            IDisplay display,
-            IPowerTube powerTube,
-            IUserInterface ui) : this(timer, display, powerTube)
-        {
-            UI = ui;
-        }
+    public void StartCooking(int power, int time)
+    {
+        myPowerTube.TurnOn(power);
+        myTimer.Start(time);
+        isCooking = true;
+    }
 
-        public CookController(
-            ITimeProvider timer,
-            IDisplay display,
-            IPowerTube powerTube)
-        {
-            myTimer = timer;
-            myDisplay = display;
-            myPowerTube = powerTube;
+    public void Stop()
+    {
+        isCooking = false;
+        myPowerTube.TurnOff();
+        myTimer.Stop();
+    }
 
-            timer.Expired += new EventHandler(OnTimerExpired);
-            timer.TimerTick += new EventHandler(OnTimerTick);
-        }
+    private void OnTimerExpired(object sender, EventArgs e)
+    {
+        if (!isCooking) return;
+        isCooking = false;
+        myPowerTube.TurnOff();
+        Microwave.CookingIsDone();
+    }
 
-        public void StartCooking(int power, int time)
-        {
-            myPowerTube.TurnOn(power);
-            myTimer.Start(time);
-            isCooking = true;
-        }
-
-        public void Stop()
-        {
-            isCooking = false;
-            myPowerTube.TurnOff();
-            myTimer.Stop();
-        }
-
-        public void OnTimerExpired(object sender, EventArgs e)
-        {
-            if (isCooking)
-            {
-                isCooking = false;
-                myPowerTube.TurnOff();
-                UI.CookingIsDone();
-            }
-        }
-
-        public void OnTimerTick(object sender, EventArgs e)
-        {
-            if (isCooking)
-            {
-                int remaining = myTimer.TimeRemaining;
-                myDisplay.ShowTime(remaining / 60, remaining % 60);
-            }
-        }
+    private void OnTimerTick(object sender, EventArgs e)
+    {
+        if (!isCooking) return;
+        var remaining = myTimer.TimeRemaining;
+        myDisplay.ShowTime(remaining / 60, remaining % 60);
     }
 }
