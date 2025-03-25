@@ -1,4 +1,6 @@
-namespace Microwave.Classes.StateMachine.MicrowaveControl.States;
+using Microwave.Classes.Domain.MicrowaveControllerStateMachine.Interfaces;
+
+namespace Microwave.Classes.Domain.MicrowaveControllerStateMachine.States;
 
 public class Ready : MicrowaveControllerState
 {
@@ -7,7 +9,7 @@ public class Ready : MicrowaveControllerState
         context.ShowPower();
         context.SetState(new SetPower());
     }
-    
+
     public override void OnDoorOpened(IMicrowaveStateContext context)
     {
         context.TurnOnLight();

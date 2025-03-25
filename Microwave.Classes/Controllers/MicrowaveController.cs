@@ -1,8 +1,9 @@
 ﻿using System;
 using Microwave.Classes.Boundary.Interfaces;
 using Microwave.Classes.Controllers.Interfaces;
-using Microwave.Classes.StateMachine.MicrowaveControl;
-using Microwave.Classes.StateMachine.MicrowaveControl.States;
+using Microwave.Classes.Domain.MicrowaveControllerStateMachine;
+using Microwave.Classes.Domain.MicrowaveControllerStateMachine.Interfaces;
+using Microwave.Classes.Domain.MicrowaveControllerStateMachine.States;
 
 namespace Microwave.Classes.Controllers;
 
@@ -23,7 +24,8 @@ public class MicrowaveController : IMicrowaveController, IMicrowaveStateContext
         IDoor door,
         IDisplay display,
         ILight light,
-        ICookController cooker)
+        ICookController cooker
+    )
     {
         powerButton.Pressed += OnPowerPressed;
         timeButton.Pressed += OnTimePressed;
@@ -74,13 +76,13 @@ public class MicrowaveController : IMicrowaveController, IMicrowaveStateContext
     {
         state.CookingIsDone(this);
     }
-    
+
     public void SetState(MicrowaveControllerState s)
     {
         state = s;
     }
     #endregion
-    
+
     #region State Actions - Sets values, called by the states
     public void ShowPower()
     {
@@ -89,7 +91,7 @@ public class MicrowaveController : IMicrowaveController, IMicrowaveStateContext
 
     public void IncreaseAndShowPower()
     {
-        powerLevel = (powerLevel >= 700 ? 50 : powerLevel+50);
+        powerLevel = (powerLevel >= 700 ? 50 : powerLevel + 50);
         myDisplay.ShowPower(powerLevel);
     }
 
@@ -113,7 +115,7 @@ public class MicrowaveController : IMicrowaveController, IMicrowaveStateContext
     public void StartCooking()
     {
         myLight.TurnOn();
-        myCooker.StartCooking(powerLevel, time*60);
+        myCooker.StartCooking(powerLevel, time * 60);
     }
 
     public void StopCooking()
@@ -123,12 +125,14 @@ public class MicrowaveController : IMicrowaveController, IMicrowaveStateContext
         myLight.TurnOff();
         myDisplay.Clear();
     }
+
     public void StopCookingLeaveLightOn()
     {
         ResetValues();
         myCooker.Stop();
         myDisplay.Clear();
     }
+
     public void TurnOnLight()
     {
         myLight.TurnOn();
@@ -138,7 +142,7 @@ public class MicrowaveController : IMicrowaveController, IMicrowaveStateContext
     {
         myLight.TurnOff();
     }
-    
+
     public void ResetWithLightOn()
     {
         ResetValues();

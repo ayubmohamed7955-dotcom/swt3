@@ -10,7 +10,7 @@ public class DoorTest
     [SetUp]
     public void Setup()
     {
-        uut = new Door();    
+        uut = new Door();
     }
 
     [Test]

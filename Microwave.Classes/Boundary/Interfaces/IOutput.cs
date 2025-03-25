@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microwave.Classes.Interfaces
+namespace Microwave.Classes.Boundary.Interfaces;
+
+public interface IOutput
 {
-    public interface ILight
-    {
-        void TurnOn();
-        void TurnOff();
-    }
+    void OutputLine(string line);
 }

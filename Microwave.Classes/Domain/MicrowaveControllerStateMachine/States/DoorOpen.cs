@@ -1,4 +1,6 @@
-namespace Microwave.Classes.StateMachine.MicrowaveControl.States;
+using Microwave.Classes.Domain.MicrowaveControllerStateMachine.Interfaces;
+
+namespace Microwave.Classes.Domain.MicrowaveControllerStateMachine.States;
 
 public class DoorOpen : MicrowaveControllerState
 {

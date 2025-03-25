@@ -1,4 +1,4 @@
-namespace Microwave.Classes.StateMachine.MicrowaveControl;
+namespace Microwave.Classes.Domain.MicrowaveControllerStateMachine.Interfaces;
 
 public interface IMicrowaveStateContext
 {

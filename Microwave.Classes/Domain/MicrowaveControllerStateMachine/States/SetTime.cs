@@ -1,4 +1,6 @@
-namespace Microwave.Classes.StateMachine.MicrowaveControl.States;
+using Microwave.Classes.Domain.MicrowaveControllerStateMachine.Interfaces;
+
+namespace Microwave.Classes.Domain.MicrowaveControllerStateMachine.States;
 
 public class SetTime : MicrowaveControllerState
 {
@@ -6,13 +8,13 @@ public class SetTime : MicrowaveControllerState
     {
         context.IncreaseAndShowTime();
     }
-    
+
     public override void OnStartCancelPressed(IMicrowaveStateContext context)
     {
         context.StartCooking();
         context.SetState(new Cooking());
     }
-    
+
     public override void OnDoorOpened(IMicrowaveStateContext context)
     {
         context.ResetWithLightOn();

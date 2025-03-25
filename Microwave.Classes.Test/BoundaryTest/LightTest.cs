@@ -1,6 +1,5 @@
 ﻿using Microwave.Classes.Boundary;
 using Microwave.Classes.Boundary.Interfaces;
-using Microwave.Classes.Domain.Interfaces;
 using NSubstitute;
 
 namespace Microwave.Classes.Test.BoundaryTest;
