@@ -1,8 +1,12 @@
 # See https://docs.gitlab.com/ee/ci/testing/unit_test_report_examples.html
 # Complete reference here: https://docs.gitlab.com/ee/ci/yaml/index.html
 image: mcr.microsoft.com/dotnet/sdk:8.0
-build-and-test:
-  stage: test
+stages:
+  - unittest
+  - integrationtest
+
+build-and-unittest:
+  stage: unittest
   variables:
     GIT_STRATEGY: clone
   script:
@@ -13,7 +17,7 @@ build-and-test:
     - 'dotnet test Microwave.Classes.Test --collect:"XPlat Code Coverage" --logger:"junit;MethodFormat=Class;FailureBodyFormat=Verbose"'
     # Create Report using ReportGenerator: https://reportgenerator.io/usage
     # When invoking nuget package directly it will execute from sln root folder
-    # The report path is therefore set to ./*/*/*/*/coverage.cobertura.xml
+    # The report path is therefore set to ./*/*/*/coverage.cobertura.xml
     - 'dotnet ~/.nuget/packages/reportgenerator/*/tools/net8.0/ReportGenerator.dll -reports:./*/*/*/coverage.cobertura.xml -targetdir:coveragereport "-reporttypes:Html;TextSummary"'
     # Display Coverage Summary (used by coverage regex to display coverage in GitLab)
     - 'cat ./coveragereport/Summary.txt'
@@ -36,9 +40,7 @@ integration-testing:
   stage: integrationtest
   when: manual
   script:
-  # Build and run tests
-  #- 'dotnet clean'
-  #- 'dotnet build'
+  # Run tests - no coverage for integration tests
   - 'dotnet test Microwave.Classes.Test.Integration --logger:"junit;MethodFormat=Class;FailureBodyFormat=Verbose"'
   artifacts:
     when: always
