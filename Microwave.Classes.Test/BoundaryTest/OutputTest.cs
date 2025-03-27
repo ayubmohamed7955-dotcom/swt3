@@ -3,24 +3,24 @@
 namespace Microwave.Classes.Test.BoundaryTest;
 
 [TestFixture]
-class OutputTest
+public class OutputTest
 {
-    private StringWriter str;
-    private Output uut;
+    private StringWriter _str;
+    private Output _uut;
 
     [SetUp]
     public void Setup()
     {
-        str = new StringWriter();
-        Console.SetOut(str);
-        uut = new Output();
+        _str = new StringWriter();
+        Console.SetOut(_str);
+        _uut = new Output();
     }
 
     [Test]
     public void OutputLineCorrect()
     {
-        uut.OutputLine("Test");
+        _uut.OutputLine("Test");
 
-        Assert.That(str.ToString().Contains("Test"));
+        Assert.That(_str.ToString().Contains("Test"));
     }
 }
