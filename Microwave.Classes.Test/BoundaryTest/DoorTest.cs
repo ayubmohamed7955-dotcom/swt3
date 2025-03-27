@@ -5,19 +5,19 @@ namespace Microwave.Classes.Test.BoundaryTest;
 [TestFixture]
 public class DoorTest
 {
-    private Door uut;
+    private Door _uut;
 
     [SetUp]
     public void Setup()
     {
-        uut = new Door();
+        _uut = new Door();
     }
 
     [Test]
     public void Open_NoSubscribers_NoThrow()
     {
         // We don't need an assert, as an exception would fail the test case
-        uut.Open();
+        _uut.Open();
     }
 
     [Test]
@@ -25,8 +25,8 @@ public class DoorTest
     {
         bool notified = false;
 
-        uut.Opened += (sender, args) => notified = true;
-        uut.Open();
+        _uut.Opened += (sender, args) => notified = true;
+        _uut.Open();
         Assert.That(notified, Is.EqualTo(true));
     }
 
@@ -34,7 +34,7 @@ public class DoorTest
     public void Close_NoSubscribers_NoThrow()
     {
         // We don't need an assert, as an exception would fail the test case
-        uut.Close();
+        _uut.Close();
     }
 
     [Test]
@@ -42,8 +42,8 @@ public class DoorTest
     {
         bool notified = false;
 
-        uut.Closed += (sender, args) => notified = true;
-        uut.Close();
+        _uut.Closed += (sender, args) => notified = true;
+        _uut.Close();
         Assert.That(notified, Is.EqualTo(true));
     }
 

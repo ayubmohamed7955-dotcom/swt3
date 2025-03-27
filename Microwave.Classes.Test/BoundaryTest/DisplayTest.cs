@@ -7,63 +7,63 @@ namespace Microwave.Classes.Test.BoundaryTest;
 [TestFixture]
 public class DisplayTest
 {
-    private Display uut;
-    private IOutput output;
+    private Display _uut;
+    private IOutput _output;
 
     [SetUp]
     public void Setup()
     {
-        output = Substitute.For<IOutput>();
-        uut = new Display(output);
+        _output = Substitute.For<IOutput>();
+        _uut = new Display(_output);
     }
 
     [Test]
     public void ShowTime_ZeroMinuteZeroSeconds_CorrectOutput()
     {
-        uut.ShowTime(0,0);
-        output.Received().OutputLine(Arg.Is<string>(str => str.Contains("00:00")));
+        _uut.ShowTime(0,0);
+        _output.Received().OutputLine(Arg.Is<string>(str => str.Contains("00:00")));
     }
 
     [Test]
     public void ShowTime_ZeroMinuteSomeSecond_CorrectOutput()
     {
-        uut.ShowTime(0, 5);
-        output.Received().OutputLine(Arg.Is<string>(str => str.Contains("00:05")));
+        _uut.ShowTime(0, 5);
+        _output.Received().OutputLine(Arg.Is<string>(str => str.Contains("00:05")));
     }
 
     [Test]
     public void ShowTime_SomeMinuteZeroSecond_CorrectOutput()
     {
-        uut.ShowTime(5, 0);
-        output.Received().OutputLine(Arg.Is<string>(str => str.Contains("05:00")));
+        _uut.ShowTime(5, 0);
+        _output.Received().OutputLine(Arg.Is<string>(str => str.Contains("05:00")));
     }
 
     [Test]
     public void ShowTime_SomeMinuteSomeSecond_CorrectOutput()
     {
-        uut.ShowTime(10, 15);
-        output.Received().OutputLine(Arg.Is<string>(str => str.Contains("10:15")));
+        _uut.ShowTime(10, 15);
+        _output.Received().OutputLine(Arg.Is<string>(str => str.Contains("10:15")));
     }
 
     [Test]
     public void ShowPower_Zero_CorrectOutput()
     {
-        uut.ShowPower(0);
-        output.Received().OutputLine(Arg.Is<string>(str => str.Contains("0 W")));
+        _uut.ShowPower(0);
+        _output.Received().OutputLine(Arg.Is<string>(str => str.Contains("0 W")));
     }
 
     [Test]
     public void ShowPower_NotZero_CorrectOutput()
     {
-        uut.ShowPower(150);
-        output.Received().OutputLine(Arg.Is<string>(str => str.Contains("150 W")));
+        _uut.ShowPower(150);
+        _output.Received().OutputLine(Arg.Is<string>(str => str.Contains("150 W")));
     }
 
     [Test]
     public void Clear_CorrectOutput()
     {
-        uut.Clear();
-        output.Received().OutputLine(Arg.Is<string>(str => str.Contains("cleared")));
+        _uut.Clear();
+        _output.Received().OutputLine(Arg.Is<string>(str => str.Contains("cleared")));
     }
 
 }
