@@ -7,45 +7,45 @@ namespace Microwave.Classes.Test.BoundaryTest;
 [TestFixture]
 public class LightTest
 {
-    private Light uut;
-    private IOutput output;
+    private Light _uut;
+    private IOutput _output;
 
     [SetUp]
     public void Setup()
     {
-        output = Substitute.For<IOutput>();
+        _output = Substitute.For<IOutput>();
 
-        uut = new Light(output);
+        _uut = new Light(_output);
     }
 
     [Test]
     public void TurnOn_WasOff_CorrectOutput()
     {
-        uut.TurnOn();
-        output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains("on")));
+        _uut.TurnOn();
+        _output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains("on")));
     }
 
     [Test]
     public void TurnOff_WasOn_CorrectOutput()
     {
-        uut.TurnOn();
-        uut.TurnOff();
-        output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains("off")));
+        _uut.TurnOn();
+        _uut.TurnOff();
+        _output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains("off")));
     }
 
     [Test]
     public void TurnOn_WasOn_CorrectOutput()
     {
-        uut.TurnOn();
-        uut.TurnOn();
-        output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains("on")));
+        _uut.TurnOn();
+        _uut.TurnOn();
+        _output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains("on")));
     }
 
     [Test]
     public void TurnOff_WasOff_CorrectOutput()
     {
-        uut.TurnOff();
-        output.DidNotReceive().OutputLine(Arg.Is<string>(str => str.Contains("off")));
+        _uut.TurnOff();
+        _output.DidNotReceive().OutputLine(Arg.Is<string>(str => str.Contains("off")));
     }
 
 

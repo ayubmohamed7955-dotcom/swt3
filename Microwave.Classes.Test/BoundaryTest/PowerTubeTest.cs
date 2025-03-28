@@ -7,14 +7,14 @@ namespace Microwave.Classes.Test.BoundaryTest;
 [TestFixture]
 public class PowerTubeTest
 {
-    private PowerTube uut;
-    private IOutput output;
+    private PowerTube _uut;
+    private IOutput _output;
 
     [SetUp]
     public void Setup()
     {
-        output = Substitute.For<IOutput>();
-        uut = new PowerTube(output);
+        _output = Substitute.For<IOutput>();
+        _uut = new PowerTube(_output);
     }
 
     [TestCase(1)]
@@ -24,8 +24,8 @@ public class PowerTubeTest
     [TestCase(700)]
     public void TurnOn_WasOffCorrectPower_CorrectOutput(int power)
     {
-        uut.TurnOn(power);
-        output.Received().OutputLine(Arg.Is<string>(str => str.Contains($"{power}")));
+        _uut.TurnOn(power);
+        _output.Received().OutputLine(Arg.Is<string>(str => str.Contains($"{power}")));
     }
 
     [TestCase(-5)]
@@ -35,28 +35,28 @@ public class PowerTubeTest
     [TestCase(750)]
     public void TurnOn_WasOffOutOfRangePower_ThrowsException(int power)
     {
-        Assert.Throws<ArgumentOutOfRangeException>(() => uut.TurnOn(power));
+        Assert.Throws<ArgumentOutOfRangeException>(() => _uut.TurnOn(power));
     }
 
     [Test]
     public void TurnOff_WasOn_CorrectOutput()
     {
-        uut.TurnOn(50);
-        uut.TurnOff();
-        output.Received().OutputLine(Arg.Is<string>(str => str.Contains("off")));
+        _uut.TurnOn(50);
+        _uut.TurnOff();
+        _output.Received().OutputLine(Arg.Is<string>(str => str.Contains("off")));
     }
 
     [Test]
     public void TurnOff_WasOff_NoOutput()
     {
-        uut.TurnOff();
-        output.DidNotReceive().OutputLine(Arg.Any<string>());
+        _uut.TurnOff();
+        _output.DidNotReceive().OutputLine(Arg.Any<string>());
     }
 
     [Test]
     public void TurnOn_WasOn_ThrowsException()
     {
-        uut.TurnOn(50);
-        Assert.Throws<ApplicationException>(() => uut.TurnOn(60));
+        _uut.TurnOn(50);
+        Assert.Throws<ApplicationException>(() => _uut.TurnOn(60));
     }
 }
