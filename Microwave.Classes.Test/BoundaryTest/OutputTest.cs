@@ -16,6 +16,12 @@ public class OutputTest
         _uut = new Output();
     }
 
+    [TearDown]
+    public void TearDown()
+    {
+        _str?.Dispose();
+    }
+
     [Test]
     public void OutputLineCorrect()
     {
