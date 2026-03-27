@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Microwave.Classes.Test.Integration/Microwave.Classes.Test.Integration.csproj" />
+  <Project Path="Microwave.Classes.Test/Microwave.Classes.Test.csproj" />
+  <Project Path="Microwave.Classes/Microwave.Classes.csproj" />
+  <Project Path="Microwave.ConsoleApp/Microwave.ConsoleApp.csproj" />
+</Solution>

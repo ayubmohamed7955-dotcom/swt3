@@ -10,7 +10,7 @@ public class CookControllerTest
 {
     private CookController _uut;
 
-    private IMicrowaveController _ui;
+    private IMicrowaveController _microwaveController;
     private ITimeProvider _timer;
     private IDisplay _display;
     private IPowerTube _powerTube;
@@ -18,12 +18,12 @@ public class CookControllerTest
     [SetUp]
     public void Setup()
     {
-        _ui = Substitute.For<IMicrowaveController>();
+        _microwaveController = Substitute.For<IMicrowaveController>();
         _timer = Substitute.For<ITimeProvider>();
         _display = Substitute.For<IDisplay>();
         _powerTube = Substitute.For<IPowerTube>();
 
-        _uut = new CookController(_timer, _display, _powerTube, _ui);
+        _uut = new CookController(_timer, _display, _powerTube, _microwaveController);
     }
 
     [Test]
@@ -64,13 +64,13 @@ public class CookControllerTest
     }
 
     [Test]
-    public void Cooking_TimerExpired_UICalled()
+    public void Cooking_TimerExpired_MicrowaveControllerCalled()
     {
         _uut.StartCooking(50, 60);
 
         _timer.Expired += Raise.EventWith(this, EventArgs.Empty);
 
-        _ui.Received().CookingIsDone();
+        _microwaveController.Received().CookingIsDone();
     }
 
     [Test]

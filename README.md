@@ -1,8 +1,9 @@
 # Mandatory exercise: Hand in number 3 – Developing in a workflow
 
-This repository contains the code and exercise description for hand-in 3 for the course Software Test and Aarhus University, Institute of Electrical and Computer Engineering.
+This repository contains code and information regarding the mandatory hand-in 3 for the course Software Test at Aarhus University, Institute of Electrical and Computer Engineering.
 
-The following documentation is provided:
+The following information is provided:
+
 * [Hand-in Description](handin/README.md)
 * [MicrowaveOven Design Description](Microwave.Docs/README.md)
 
