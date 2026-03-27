@@ -4,7 +4,7 @@ The following documents the design of the Microwave System.
 
 ## Use Case Diagram
 
-![](images/MicrowaveUC.png)
+![diagram](images/MicrowaveUC.png)
 
 ## Use Case Description
 
@@ -12,10 +12,9 @@ A beeper has been omitted from this design for the sake of simplicity.
 
 |  **Name**                         |  **Cook a dish**                  |
 |-----------------------------------|-----------------------------------|
-| **Goal**                          | The user will have a dish of    |
-|                                   | food cooked                     |
-| **Initiation**                    | By the user.                    |
-| **Actors**                        | The User                        |
+| **Goal**                          | The user wants to cook a dish of food|
+| **Initiation**                    | By the user                    |
+| **Actors**                        | The user                        |
 | **Precondition**                  | The user has a dish of food on a microwave suitable platter, the MicroWave oven is attached to the mains power supply, no activity is currently taking place in the oven, the display is blank.                       |
 | **Postcondition**                 | The oven is inactive, the food has been heated with the desired microwave power during the desired time. The display is blank.                       |
 | **Main Scenario**                 | 1. The user opens the door       |
@@ -44,20 +43,19 @@ A beeper has been omitted from this design for the sake of simplicity.
 
 ## Class Diagram
 
-![](images/MicrowaveClasses.png)
-
+![Class Diagram](images/MicrowaveClasses.png)
 
 All classes are implementing a relevant interface – not shown on the diagram for simplicity – so dependency isolation
 is possible for testing. See the supplied unit tests.
 
 ## State Machine diagram for UserInterface
 
-![](images/MicrowaveStm.png)
+![State Machine Diagram](images/MicrowaveStm.png)
 
-## Sequence diagram for the main scenario and some of the extensions.
+## Sequence diagram for the main scenario and some of the extensions
 
-![](images/MicrowaveSeqTotal.png)
+![Sequence Diagram](images/MicrowaveSeqTotal.png)
 
 ## Sequence diagrams for the some of the Extensions
 
-![](images/MicrowaveSeqExtensions.png)
+![Sequence Diagram](images/MicrowaveSeqExtensions.png)

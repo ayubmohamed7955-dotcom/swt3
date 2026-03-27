@@ -1,8 +1,7 @@
-﻿using System.Threading;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Timer = Microwave.Classes.Boundary.Timer;
 
-namespace Microwave.Classes.Test;
+namespace Microwave.Classes.Test.Integration;
 
 [TestFixture]
 public class TimerTest

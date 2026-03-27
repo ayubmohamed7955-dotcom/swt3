@@ -1,6 +1,7 @@
 ﻿﻿using Microwave.Classes.Boundary;
 using Microwave.Classes.Controllers;
 using Microwave.Classes.Domain;
+using System;
 
 var startCancelButton = new Button();
 var powerButton = new Button();
@@ -9,33 +10,52 @@ var timeButton = new Button();
 var door = new Door();
 
 var output = new Output();
-
 var display = new Display(output);
-
 var powerTube = new PowerTube(output);
-
 var light = new Light(output);
-
 var timer = new Timer();
 
 var cooker = new CookController(timer, display, powerTube);
-
-var ui = new MicrowaveController(powerButton, timeButton, startCancelButton, door, display, light, cooker);
+var microwaveController = new MicrowaveController(powerButton, timeButton, startCancelButton, door, display, light, cooker);
 
 // Finish the double association
-cooker.Microwave = ui;
+cooker.Microwave = microwaveController;
 
-// Simulate a simple sequence
+Console.WriteLine("Controls:");
+Console.WriteLine("P = Power");
+Console.WriteLine("T = Time");
+Console.WriteLine("S = Start/Cancel");
+Console.WriteLine("O = Open door");
+Console.WriteLine("C = Close door");
+Console.WriteLine("Q = Quit");
 
-powerButton.Press();
+while (true)
+{
+    var key = Console.ReadKey(true).Key;
 
-timeButton.Press();
+    switch (key)
+    {
+        case ConsoleKey.P:
+            powerButton.Press();
+            break;
 
-startCancelButton.Press();
+        case ConsoleKey.T:
+            timeButton.Press();
+            break;
 
-// The simple sequence should now run
+        case ConsoleKey.S:
+            startCancelButton.Press();
+            break;
 
-System.Console.WriteLine("When you press enter, the program will stop");
-// Wait for input
+        case ConsoleKey.O:
+            door.Open();
+            break;
 
-System.Console.ReadLine();
+        case ConsoleKey.C:
+            door.Close();
+            break;
+
+        case ConsoleKey.Q:
+            return;
+    }
+}

@@ -22,7 +22,7 @@ build-and-unittest:
     # Display Coverage Summary (used by coverage regex to display coverage in GitLab)
     - 'cat ./coveragereport/Summary.txt'
   #  Regex expression applied to job log to subtract number to be displayed in GitLab 
-  coverage:  '/Line coverage: (\d+.\d+)/'  
+  coverage:  '/Line coverage: \s*(\d+(?:[\.,]\d+)?)%/'  
 #  coverage:  '/Branch coverage: (\d+)/'  
   artifacts:
     when: always
