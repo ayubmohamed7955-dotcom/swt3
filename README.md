@@ -8,3 +8,5 @@ The following information is provided:
 * [MicrowaveOven Design Description](Microwave.Docs/README.md)
 
 **Note!** The *integration test* is configured as a manual stage in gitlab-ci.yml and can run in Gitlab via the pipeline.
+
+Mohamad Saleh Yassine
