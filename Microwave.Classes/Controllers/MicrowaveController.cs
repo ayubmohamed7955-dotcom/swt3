@@ -16,6 +16,7 @@ public class MicrowaveController : IMicrowaveController, IMicrowaveStateContext
 
     private int powerLevel = 50;
     private int time = 1;
+    private readonly int maxPower;
 
     public MicrowaveController(
         IButton powerButton,
@@ -24,7 +25,8 @@ public class MicrowaveController : IMicrowaveController, IMicrowaveStateContext
         IDoor door,
         IDisplay display,
         ILight light,
-        ICookController cooker
+        ICookController cooker,
+        int maxPower = 700
     )
     {
         powerButton.Pressed += OnPowerPressed;
@@ -38,6 +40,7 @@ public class MicrowaveController : IMicrowaveController, IMicrowaveStateContext
         state = new Ready();
         myLight = light;
         myDisplay = display;
+        this.maxPower = maxPower;
     }
 
     private void ResetValues()
@@ -91,7 +94,7 @@ public class MicrowaveController : IMicrowaveController, IMicrowaveStateContext
 
     public void IncreaseAndShowPower()
     {
-        powerLevel = (powerLevel >= 700 ? 50 : powerLevel + 50);
+        powerLevel = (powerLevel + 50 > maxPower ? 50 : powerLevel + 50);
         myDisplay.ShowPower(powerLevel);
     }
 
