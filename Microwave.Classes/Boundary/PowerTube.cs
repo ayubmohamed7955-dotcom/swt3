@@ -5,6 +5,8 @@ namespace Microwave.Classes.Boundary
 {
     public class PowerTube : IPowerTube
     {
+        public const int MinConfigurablePower = 400;
+        public const int MaxConfigurablePower = 1200;
         private IOutput myOutput;
 
         private bool IsOn = false;
