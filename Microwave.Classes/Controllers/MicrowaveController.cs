@@ -9,6 +9,9 @@ namespace Microwave.Classes.Controllers;
 
 public class MicrowaveController : IMicrowaveController, IMicrowaveStateContext
 {
+    // Seconds added to the remaining cooking time for each press on the time button while cooking
+    public const int CookingTimeExtensionSeconds = 30;
+
     private MicrowaveControllerState state;
     private readonly ICookController myCooker;
     private readonly ILight myLight;
@@ -116,6 +119,11 @@ public class MicrowaveController : IMicrowaveController, IMicrowaveStateContext
     {
         myLight.TurnOn();
         myCooker.StartCooking(powerLevel, time * 60);
+    }
+
+    public void ExtendCookingTime()
+    {
+        myCooker.AddTime(CookingTimeExtensionSeconds);
     }
 
     public void StopCooking()

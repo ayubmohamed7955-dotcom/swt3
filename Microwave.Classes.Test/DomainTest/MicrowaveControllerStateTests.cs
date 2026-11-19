@@ -193,4 +193,26 @@ public class MicrowaveControllerStateTest
                 Arg.Is<MicrowaveControllerState>(x => x.GetType() == expectedState.GetType())
             );
     }
+
+    private static IEnumerable<TestCaseData> OnTimePressedExtendCookingTimeStates()
+    {
+        yield return new TestCaseData(new Cooking(), 1);
+        yield return new TestCaseData(new DoorOpen(), 0);
+        yield return new TestCaseData(new Ready(), 0);
+        yield return new TestCaseData(new SetPower(), 0);
+        yield return new TestCaseData(new SetTime(), 0);
+    }
+
+    [TestCaseSource(nameof(OnTimePressedExtendCookingTimeStates))]
+    public void MicrowaveControllerState_OnTimePressed_ExtendCookingTimeOnlyWhenCooking(
+        MicrowaveControllerState initialState,
+        int expectedCalls
+    )
+    {
+        _uut = initialState;
+
+        _uut.OnTimePressed(_context);
+
+        _context.Received(expectedCalls).ExtendCookingTime();
+    }
 }
