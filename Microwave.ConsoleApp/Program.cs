@@ -11,7 +11,7 @@ var door = new Door();
 
 var output = new Output();
 var display = new Display(output);
-var powerTube = new PowerTube(output);
+var powerTube = new PowerTube(output, 1000); // Set max power to 1000W
 var light = new Light(output);
 var timer = new Timer();
 
