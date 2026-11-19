@@ -33,6 +33,16 @@ namespace Microwave.Classes.Boundary
             timer.Enabled = false;
         }
 
+        public void AddTime(int seconds)
+        {
+            if (seconds <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(seconds), seconds, "Must be positive");
+            }
+
+            TimeRemaining += seconds;
+        }
+
         private void Expire()
         {
             timer.Enabled = false;
