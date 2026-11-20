@@ -337,7 +337,6 @@ public class MicrowaveControllerTest
         _light.Received(1).TurnOff();
     }
 
-<<<<<<< HEAD
     [Test]
     public void Cooking_TimeButton_CookerAddTimeCalled()
     {
@@ -394,7 +393,7 @@ public class MicrowaveControllerTest
 
         _cooker.DidNotReceive().AddTime(Arg.Any<int>());
     }
-=======
+
     #region Buzzer
 
     private void GoToCooking()
@@ -459,5 +458,4 @@ public class MicrowaveControllerTest
     }
 
     #endregion
->>>>>>> 37981b25e3f9ed8fa7c2c4c659ba0bd801a94dce
 }
