@@ -347,7 +347,7 @@ except that `AddTime` is ignored when not cooking.
 | `PowerTube` | **Changed.** Constructor takes `maxPower` (default 700), validated to 400–1200 W. `TurnOn` validates the power against `MaxPower` instead of 700. |
 | `MicrowaveController` | **Changed.** Constructor takes `maxPower` (default 700). `IncreaseAndShowPower()` wraps at `maxPower`. |
 | `Program` | **Changed.** `new PowerTube(output, 1000)` and `powerTube.MaxPower` is passed to `MicrowaveController`. |
-| Tests | **Changed** `PowerTubeTest` (BVA on constructor and `TurnOn` with configured max). **Added** `MicrowaveControllerMaxPowerTests`. |
+| Tests | **Changed** `PowerTubeTest` (BVA on constructor and `TurnOn` with configured max). **Added** `MicrowaveControllerMaxPowerTest`. |
 
 ### 4.3 Extend cooking time while cooking
 
@@ -450,9 +450,12 @@ Legend: **T** = module under test, **X** = real module included, **S** = stub/fa
 
 | Step | Output | Display | Light | PowerTube | Buzzer | Timer | Button | Door | CookController | MicrowaveController |
 |---|---|---|---|---|---|---|---|---|---|---|
+| 0 | | | | | | T | | | | |
 | 1 | X | T | T | T | T | | | | D | |
 | 2 | X | X | | X | | X | | | T | S |
 | 3 | X | X | X | X | X | S | X (D) | X (D) | X | T |
+
+**Step 0 - Timer.** The real `Timer` is tested alone with real time in `Microwave.Classes.Test.Integration/TestMicrowaveTimerIntegration.cs`: tick interval, number of ticks, `TimeRemaining`, expiration, `Stop()` and `AddTime()`. These tests also cover the time-dependent parts of `Timer` that are exempted from unit testing (see section 8).
 
 **Step 1 – output boundaries.** Display, Light, PowerTube and Buzzer are integrated with the real `Output`. The test
 calls them directly and redirects `Console` (`Console.SetOut(StringWriter)`) to check the exact text written.
@@ -480,7 +483,7 @@ We use a **bottom-up** strategy:
   objects are used as the drivers, so the system is tested through the same entry points as the real user.
 * `Output` is kept real in all steps and observed by redirecting `Console`. This makes the output text itself part of
   the integration test, so formatting errors are caught.
-* The real `Timer` is only included in step 2. Using it in step 3 would make every test take at least a minute
+* The real `Timer` is only included in steps 0 and 2. Using it in step 3 would make every test take at least a minute
   (minimum cooking time is 1 min), and it would not test anything new.
 
 ## 8. Test coverage
