@@ -482,3 +482,18 @@ We use a **bottom-up** strategy:
   the integration test, so formatting errors are caught.
 * The real `Timer` is only included in step 2. Using it in step 3 would make every test take at least a minute
   (minimum cooking time is 1 min), and it would not test anything new.
+
+## 8. Test coverage
+
+Unit test coverage on `main` (pipeline job `build-and-unittest`): **96.2 % line coverage**, 85.7 % branch coverage.
+15 of 16 classes have 100 % line coverage.
+
+The only class below 100 % is `Timer` (63.6 %). All uncovered lines and branches are in `OnTimerEvent()` and
+`Expire()`, which are only executed when a real `System.Timers.Timer` fires after 1 second. Unit tests must be fast and
+must not depend on real time, so these parts are deliberately **exempted from unit testing**. They are instead covered
+by the integration tests in `Microwave.Classes.Test.Integration/TestMicrowaveTimerIntegration.cs` (tick interval,
+number of ticks, expiration time, `Stop()` and `AddTime()` delaying the expiration). The integration tests run as the
+manual `integration-testing` stage in the pipeline and are not included in the coverage report.
+
+The parts of `Timer` that do not depend on time (`Start`, `Stop`, `AddTime`) are unit tested in
+`Microwave.Classes.Test/BoundaryTest/TimerTest.cs`.
