@@ -8,6 +8,7 @@ public interface IMicrowaveStateContext
     void IncreaseAndShowTime();
     void Reset();
     void StartCooking();
+    void ExtendCookingTime();
     void StopCooking();
     void StopCookingLeaveLightOn();
     void TurnOnLight();

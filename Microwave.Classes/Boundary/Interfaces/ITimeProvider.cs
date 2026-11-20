@@ -15,4 +15,5 @@ public interface ITimeProvider
 
     void Start(int time);
     void Stop();
+    void AddTime(int seconds);
 }

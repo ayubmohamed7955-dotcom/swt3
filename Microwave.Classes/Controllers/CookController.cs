@@ -52,6 +52,14 @@ public class CookController : ICookController
         myTimer.Stop();
     }
 
+    public void AddTime(int seconds)
+    {
+        if (!isCooking) return;
+        myTimer.AddTime(seconds);
+        var remaining = myTimer.TimeRemaining;
+        myDisplay.ShowTime(remaining / 60, remaining % 60);
+    }
+
     private void OnTimerExpired(object sender, EventArgs e)
     {
         if (!isCooking) return;

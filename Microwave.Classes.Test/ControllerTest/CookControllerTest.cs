@@ -82,4 +82,58 @@ public class CookControllerTest
         _powerTube.Received().TurnOff();
     }
 
+    [Test]
+    public void AddTime_Cooking_TimerAddTimeCalled()
+    {
+        _uut.StartCooking(50, 60);
+
+        _uut.AddTime(30);
+
+        _timer.Received(1).AddTime(30);
+    }
+
+    [TestCase(30, 0, 30)]
+    [TestCase(59, 0, 59)]
+    [TestCase(60, 1, 0)]
+    [TestCase(90, 1, 30)]
+    public void AddTime_Cooking_DisplayShowsNewRemainingTime(int remaining, int min, int sec)
+    {
+        _uut.StartCooking(50, 60);
+        _timer.TimeRemaining.Returns(remaining);
+
+        _uut.AddTime(30);
+
+        _display.Received(1).ShowTime(min, sec);
+    }
+
+    [Test]
+    public void AddTime_NotStarted_TimerNotCalled()
+    {
+        _uut.AddTime(30);
+
+        _timer.DidNotReceive().AddTime(Arg.Any<int>());
+        _display.DidNotReceive().ShowTime(Arg.Any<int>(), Arg.Any<int>());
+    }
+
+    [Test]
+    public void AddTime_AfterStop_TimerNotCalled()
+    {
+        _uut.StartCooking(50, 60);
+        _uut.Stop();
+
+        _uut.AddTime(30);
+
+        _timer.DidNotReceive().AddTime(Arg.Any<int>());
+    }
+
+    [Test]
+    public void AddTime_AfterTimerExpired_TimerNotCalled()
+    {
+        _uut.StartCooking(50, 60);
+        _timer.Expired += Raise.EventWith(this, EventArgs.Empty);
+
+        _uut.AddTime(30);
+
+        _timer.DidNotReceive().AddTime(Arg.Any<int>());
+    }
 }

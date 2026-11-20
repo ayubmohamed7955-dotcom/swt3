@@ -337,6 +337,63 @@ public class MicrowaveControllerTest
         _light.Received(1).TurnOff();
     }
 
+    [Test]
+    public void Cooking_TimeButton_CookerAddTimeCalled()
+    {
+        _powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+        _timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+        _startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+        // Now in Cooking
+
+        _timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+        _cooker.Received(1).AddTime(MicrowaveController.CookingTimeExtensionSeconds);
+    }
+
+    [TestCase(1)]
+    [TestCase(2)]
+    [TestCase(5)]
+    public void Cooking_TimeButtonPressedSeveralTimes_CookerAddTimeCalledEachTime(int presses)
+    {
+        _powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+        _timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+        _startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+        // Now in Cooking
+
+        for (int i = 0; i < presses; i++)
+        {
+            _timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+        }
+
+        _cooker.Received(presses).AddTime(MicrowaveController.CookingTimeExtensionSeconds);
+    }
+
+    [Test]
+    public void SetTime_TimeButton_CookerAddTimeNotCalled()
+    {
+        _powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+        _timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+        // Now in SetTime
+
+        _timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+        _cooker.DidNotReceive().AddTime(Arg.Any<int>());
+    }
+
+    [Test]
+    public void CookingIsDone_TimeButton_CookerAddTimeNotCalled()
+    {
+        _powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+        _timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+        _startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+        _uut.CookingIsDone();
+        // Now in Ready
+
+        _timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+        _cooker.DidNotReceive().AddTime(Arg.Any<int>());
+    }
+
     #region Buzzer
 
     private void GoToCooking()
