@@ -24,7 +24,7 @@ cooker.Microwave = microwaveController;
 
 Console.WriteLine("Controls:");
 Console.WriteLine("P = Power");
-Console.WriteLine("T = Time");
+Console.WriteLine("T = Time (while cooking: add 30 seconds)");
 Console.WriteLine("S = Start/Cancel");
 Console.WriteLine("O = Open door");
 Console.WriteLine("C = Close door");
