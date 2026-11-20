@@ -80,19 +80,19 @@ public class MicrowaveControllerTest
     }
 
     [Test]
-    public void Ready_20PowerButton_PowerIs1000()
+    public void Ready_14PowerButton_PowerIs700()
     {
-        for (var i = 0; i <= 20; i++)
+        for (var i = 0; i <= 14; i++)
         {
             _powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
         }
-        _display.Received(1).ShowPower(Arg.Is(1000));
+        _display.Received(1).ShowPower(Arg.Is(700));
     }
 
     [Test]
-    public void Ready_21PowerButton_PowerIs50Again()
+    public void Ready_15PowerButton_PowerIs50Again()
     {
-        for (var i = 0; i <= 21; i++)
+        for (var i = 0; i <= 15; i++)
         {
             _powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
         }

@@ -16,7 +16,7 @@ var light = new Light(output);
 var timer = new Timer();
 
 var cooker = new CookController(timer, display, powerTube);
-var microwaveController = new MicrowaveController(powerButton, timeButton, startCancelButton, door, display, light, cooker);
+var microwaveController = new MicrowaveController(powerButton, timeButton, startCancelButton, door, display, light, cooker, powerTube.MaxPower);
 
 // Finish the double association
 cooker.Microwave = microwaveController;
