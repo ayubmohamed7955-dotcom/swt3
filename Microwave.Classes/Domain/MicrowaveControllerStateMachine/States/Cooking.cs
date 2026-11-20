@@ -4,6 +4,11 @@ namespace Microwave.Classes.Domain.MicrowaveControllerStateMachine.States;
 
 public class Cooking : MicrowaveControllerState
 {
+    public override void OnTimePressed(IMicrowaveStateContext context)
+    {
+        context.ExtendCookingTime();
+    }
+
     public override void OnStartCancelPressed(IMicrowaveStateContext context)
     {
         context.StopCooking();

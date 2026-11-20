@@ -1,12 +1,20 @@
-# Mandatory exercise: Hand in number 3 – Developing in a workflow
+# SWT Hand-in 3 – Microwave Oven
 
-This repository contains code and information regarding the mandatory hand-in 3 for the course Software Test at Aarhus University, Institute of Electrical and Computer Engineering.
+**Group:** swt10
 
-The following information is provided:
+| Name | Student number |
+|---|---|
+| Mohamad Saleh Yassine | au759451 |
+| Ayub Mohamed Yusuf | au781514 |
+| Mohamed Abdirahman Hassan Mahamod | au758453 |
 
-* [Hand-in Description](handin/README.md)
-* [MicrowaveOven Design Description](Microwave.Docs/README.md)
+**GitLab repository:** https://gitlab.au.dk/au759451/swt-handin-3-microwave-oven-handin
 
-**Note!** The *integration test* is configured as a manual stage in gitlab-ci.yml and can run in Gitlab via the pipeline.
+**Documentation:** [docs/README.md](docs/README.md)
 
-Mohamad Saleh Yassine
+## Other information
+
+* [Hand-in description](handin/README.md)
+* [Original Microwave Oven design description](Microwave.Docs/README.md)
+
+The *integration test* is configured as a manual stage in `.gitlab-ci.yml` and can be run from the pipeline in GitLab.

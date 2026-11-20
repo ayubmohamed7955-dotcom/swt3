@@ -9,10 +9,16 @@ namespace Microwave.Classes.Controllers;
 
 public class MicrowaveController : IMicrowaveController, IMicrowaveStateContext
 {
+    // Seconds added to the remaining cooking time for each press on the time button while cooking
+    public const int CookingTimeExtensionSeconds = 30;
+
     private MicrowaveControllerState state;
     private readonly ICookController myCooker;
     private readonly ILight myLight;
     private readonly IDisplay myDisplay;
+    private readonly IBuzzer myBuzzer;
+
+    private const int BurstsWhenCookingIsDone = 3;
 
     private int powerLevel = 50;
     private int time = 1;
@@ -26,6 +32,7 @@ public class MicrowaveController : IMicrowaveController, IMicrowaveStateContext
         IDisplay display,
         ILight light,
         ICookController cooker,
+        IBuzzer buzzer,
         int maxPower = 700
     )
     {
@@ -41,6 +48,7 @@ public class MicrowaveController : IMicrowaveController, IMicrowaveStateContext
         myLight = light;
         myDisplay = display;
         this.maxPower = maxPower;
+        myBuzzer = buzzer;
     }
 
     private void ResetValues()
@@ -121,6 +129,11 @@ public class MicrowaveController : IMicrowaveController, IMicrowaveStateContext
         myCooker.StartCooking(powerLevel, time * 60);
     }
 
+    public void ExtendCookingTime()
+    {
+        myCooker.AddTime(CookingTimeExtensionSeconds);
+    }
+
     public void StopCooking()
     {
         ResetValues();
@@ -158,7 +171,7 @@ public class MicrowaveController : IMicrowaveController, IMicrowaveStateContext
         ResetValues();
         myDisplay.Clear();
         myLight.TurnOff();
-        // Beep 3 times
+        myBuzzer.Buzz(BurstsWhenCookingIsDone);
     }
     #endregion
 }

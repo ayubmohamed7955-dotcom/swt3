@@ -146,4 +146,19 @@ public class TimerTest
 
         Assert.That(uut.TimeRemaining, Is.EqualTo(5 - ticks * 1));
     }
+
+    [Test]
+    public void AddTime_Started_ExpiresLater()
+    {
+        ManualResetEvent pause = new ManualResetEvent(false);
+
+        uut.Expired += (sender, args) => pause.Set();
+        uut.Start(1);
+        uut.AddTime(1);
+
+        // Without AddTime it would expire after 1 s - now it must not
+        Assert.That(!pause.WaitOne(1500));
+        // ... but it must expire after 2 s
+        Assert.That(pause.WaitOne(700));
+    }
 }

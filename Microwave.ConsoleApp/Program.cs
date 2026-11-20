@@ -14,9 +14,10 @@ var display = new Display(output);
 var powerTube = new PowerTube(output, 1000); // Set max power to 1000W
 var light = new Light(output);
 var timer = new Timer();
+var buzzer = new Buzzer(output);
 
 var cooker = new CookController(timer, display, powerTube);
-var microwaveController = new MicrowaveController(powerButton, timeButton, startCancelButton, door, display, light, cooker, powerTube.MaxPower);
+var microwaveController = new MicrowaveController(powerButton, timeButton, startCancelButton, door, display, light, cooker, buzzer, powerTube.MaxPower);
 
 // Finish the double association
 cooker.Microwave = microwaveController;

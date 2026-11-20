@@ -15,7 +15,8 @@ public class MicrowaveControllerMaxPowerTest
     private IDisplay _display;
     private ILight _light;
     private ICookController _cooker;
-
+    private IBuzzer _buzzer;
+    
     [SetUp]
     public void Setup()
     {
@@ -26,13 +27,14 @@ public class MicrowaveControllerMaxPowerTest
         _light = Substitute.For<ILight>();
         _display = Substitute.For<IDisplay>();
         _cooker = Substitute.For<ICookController>();
+        _buzzer = Substitute.For<IBuzzer>();
     }
 
     private MicrowaveController CreateUut(int maxPower)
     {
         return new MicrowaveController(
             _powerButton, _timeButton, _startCancelButton,
-            _door, _display, _light, _cooker,
+            _door, _display, _light, _cooker, _buzzer,
             maxPower);
     }
 
