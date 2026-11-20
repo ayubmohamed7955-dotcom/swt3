@@ -16,6 +16,9 @@ public class MicrowaveController : IMicrowaveController, IMicrowaveStateContext
     private readonly ICookController myCooker;
     private readonly ILight myLight;
     private readonly IDisplay myDisplay;
+    private readonly IBuzzer myBuzzer;
+
+    private const int BurstsWhenCookingIsDone = 3;
 
     private int powerLevel = 50;
     private int time = 1;
@@ -27,7 +30,8 @@ public class MicrowaveController : IMicrowaveController, IMicrowaveStateContext
         IDoor door,
         IDisplay display,
         ILight light,
-        ICookController cooker
+        ICookController cooker,
+        IBuzzer buzzer
     )
     {
         powerButton.Pressed += OnPowerPressed;
@@ -41,6 +45,7 @@ public class MicrowaveController : IMicrowaveController, IMicrowaveStateContext
         state = new Ready();
         myLight = light;
         myDisplay = display;
+        myBuzzer = buzzer;
     }
 
     private void ResetValues()
@@ -163,7 +168,7 @@ public class MicrowaveController : IMicrowaveController, IMicrowaveStateContext
         ResetValues();
         myDisplay.Clear();
         myLight.TurnOff();
-        // Beep 3 times
+        myBuzzer.Buzz(BurstsWhenCookingIsDone);
     }
     #endregion
 }

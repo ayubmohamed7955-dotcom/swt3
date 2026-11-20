@@ -13,10 +13,11 @@ var output = new Output();
 var display = new Display(output);
 var powerTube = new PowerTube(output);
 var light = new Light(output);
+var buzzer = new Buzzer(output);
 var timer = new Timer();
 
 var cooker = new CookController(timer, display, powerTube);
-var microwaveController = new MicrowaveController(powerButton, timeButton, startCancelButton, door, display, light, cooker);
+var microwaveController = new MicrowaveController(powerButton, timeButton, startCancelButton, door, display, light, cooker, buzzer);
 
 // Finish the double association
 cooker.Microwave = microwaveController;
