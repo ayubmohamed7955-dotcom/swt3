@@ -20,6 +20,7 @@ public class MicrowaveControllerTest
     private ILight _light;
 
     private ICookController _cooker;
+    private IBuzzer _buzzer;
 
     [SetUp]
     public void Setup()
@@ -31,13 +32,15 @@ public class MicrowaveControllerTest
         _light = Substitute.For<ILight>();
         _display = Substitute.For<IDisplay>();
         _cooker = Substitute.For<ICookController>();
+        _buzzer = Substitute.For<IBuzzer>();
 
         _uut = new MicrowaveController(
             _powerButton, _timeButton, _startCancelButton,
             _door,
             _display,
             _light,
-            _cooker);
+            _cooker,
+            _buzzer);
     }
 
     [Test]
@@ -334,5 +337,68 @@ public class MicrowaveControllerTest
         _light.Received(1).TurnOff();
     }
 
+    #region Buzzer
 
+    private void GoToCooking()
+    {
+        _powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+        // Now in SetPower
+        _timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+        // Now in SetTime
+        _startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+        // Now in Cooking
+    }
+
+    [Test]
+    public void Cooking_CookingIsDone_BuzzerBuzzes3Times()
+    {
+        GoToCooking();
+
+        _uut.CookingIsDone();
+
+        _buzzer.Received(1).Buzz(3);
+    }
+
+    [Test]
+    public void Cooking_CancelButton_BuzzerNotCalled()
+    {
+        GoToCooking();
+
+        _startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+        _buzzer.DidNotReceiveWithAnyArgs().Buzz(default);
+    }
+
+    [Test]
+    public void Cooking_DoorOpened_BuzzerNotCalled()
+    {
+        GoToCooking();
+
+        _door.Opened += Raise.EventWith(this, EventArgs.Empty);
+
+        _buzzer.DidNotReceiveWithAnyArgs().Buzz(default);
+    }
+
+    [Test]
+    public void Ready_CookingIsDone_BuzzerNotCalled()
+    {
+        // CookingIsDone should be ignored when not cooking
+        _uut.CookingIsDone();
+
+        _buzzer.DidNotReceiveWithAnyArgs().Buzz(default);
+    }
+
+    [Test]
+    public void Cooking_CookingIsDoneThenCancel_BuzzerOnlyCalledOnce()
+    {
+        GoToCooking();
+
+        _uut.CookingIsDone();
+        // Now in Ready - start/cancel does nothing here
+        _startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+        _buzzer.Received(1).Buzz(Arg.Any<int>());
+    }
+
+    #endregion
 }
