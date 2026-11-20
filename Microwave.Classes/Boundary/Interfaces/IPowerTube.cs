@@ -11,4 +11,5 @@ public interface IPowerTube
     void TurnOn(int power);
 
     void TurnOff();
+    int MaxPower { get; }
 }

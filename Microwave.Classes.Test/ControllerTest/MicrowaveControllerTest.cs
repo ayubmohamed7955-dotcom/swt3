@@ -85,7 +85,7 @@ public class MicrowaveControllerTest
     [Test]
     public void Ready_14PowerButton_PowerIs700()
     {
-        for (var i = 1; i <= 14; i++)
+        for (var i = 0; i <= 14; i++)
         {
             _powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
         }
@@ -95,7 +95,7 @@ public class MicrowaveControllerTest
     [Test]
     public void Ready_15PowerButton_PowerIs50Again()
     {
-        for (var i = 1; i <= 15; i++)
+        for (var i = 0; i <= 15; i++)
         {
             _powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
         }
